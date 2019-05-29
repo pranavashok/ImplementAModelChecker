@@ -1,8 +1,8 @@
-package interpreter
+package lts.interpreter
 
 import java.io.FileNotFoundException
 import scala.util.{ Failure, Success, Try }
-import parser.Walker
+import lts.parser.Walker
 
 object Main extends App {
   implicit val listener = new MyListener()

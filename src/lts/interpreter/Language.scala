@@ -1,4 +1,4 @@
-package interpreter
+package lts.interpreter
 
 object Language {
   sealed trait Statement { def execute() = Semantics.execute(this) }

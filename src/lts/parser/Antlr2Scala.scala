@@ -1,4 +1,4 @@
-package parser
+package lts.parser
 
 import org.antlr.v4.runtime.tree.{ ParseTree, ParseTreeProperty }
 

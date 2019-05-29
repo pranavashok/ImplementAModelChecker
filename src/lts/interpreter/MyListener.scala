@@ -1,8 +1,8 @@
-package interpreter
+package lts.interpreter
 
 import scala.collection.JavaConverters.asScalaBufferConverter
-import interpreter.Language._
-import parser.{ Antlr2Scala, WhilelangBaseListener, WhilelangParser => C }
+import lts.interpreter.Language._
+import lts.parser.{ Antlr2Scala, WhilelangBaseListener, WhilelangParser => C }
 
 class MyListener extends WhilelangBaseListener with Antlr2Scala[Any] {
   var _program: Program = _

@@ -2,19 +2,22 @@ grammar Whilelang;
 
 program : seqStatement;
 
-seqStatement: statement (';' statement)* ;
+seqStatement: labelstatement (';' labelstatement)* ;
 
-statement: ID ':=' expression                          # attrib
+labelstatement: (label LABELSEP)? statement;
+
+statement: ID ASSIGN expression                          # attrib
          | 'skip'                                      # skip
          | 'if' bool 'then' statement 'else' statement # if
          | 'while' bool 'do' statement                 # while
+         | 'await' bool                                # await
+         | 'assert' bool                               # assert
          | 'print' Text                                # print
          | 'write' expression                          # write
          | '{' seqStatement '}'                        # block
          ;
 
 expression: INT                                        # int
-          | 'read'                                     # read
           | ID                                         # id
           | expression '*' expression                  # binOp
           | expression ('+'|'-') expression            # binOp
@@ -29,8 +32,13 @@ bool: ('true'|'false')                                 # boolean
     | '(' bool ')'                                     # boolParen
     ;
 
-INT: ('0'..'9')+ ;
-ID: ('a'..'z')+;
-Text: '"' .*? '"';
+label: Text
+    ;
+
+INT: [0-9]+ ;
+ID: [a-zA-Z][a-zA-Z0-9]*;
+Text: '"' ~["\r\n]+ '"';
+ASSIGN: ':=';
+LABELSEP: ':';
 
 Space: [ \t\n\r] -> skip;

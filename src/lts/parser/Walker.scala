@@ -1,4 +1,4 @@
-package parser
+package lts.parser
 
 import scala.util.Try
 import org.antlr.v4.runtime.{ ANTLRInputStream, BaseErrorListener, CommonTokenStream, RecognitionException, Recognizer }
