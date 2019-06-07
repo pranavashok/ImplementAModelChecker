@@ -1,3 +1,4 @@
+// Adapted from https://gitlab.lrz.de/i7/owl/blob/master/src/main/antlr/LTLLexer.g4
 lexer grammar LTLLexer;
 
 // LOGIC
