@@ -37,3 +37,5 @@ beginprocess
   }
   _end2: skip;
 endprocess
+
+_ap1: counter = 1;

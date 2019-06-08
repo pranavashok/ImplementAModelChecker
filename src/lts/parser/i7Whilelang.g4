@@ -1,13 +1,15 @@
 // forked from https://github.com/lrlucena/whilelang
 grammar i7Whilelang;
 
-program: declarationList? initializationList? seqProcess;
+program: declarationList? initializationList? seqProcess atomicPropositions?;
 
 declarationList: DECL declaration (',' declaration)* ';';
 declaration: integerDecl;
 integerDecl: ID RANGE;
 
 initializationList: assignment*;
+
+atomicPropositions: label LABELSEP bool;
 
 seqProcess: process (';'? seqProcess)* ;
 
