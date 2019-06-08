@@ -5,7 +5,8 @@ program: declarationList? initializationList? seqProcess atomicPropositions?;
 
 declarationList: DECL declaration (',' declaration)* ';';
 declaration: integerDecl;
-integerDecl: ID RANGE;
+integerDecl: ID '[' range ']';
+range: INT;
 
 initializationList: assignment*;
 
@@ -56,7 +57,6 @@ INT: [0-9];
 ID: [a-zA-Z][a-zA-Z0-9]*;
 LABEL: '_'[a-zA-Z][a-zA-Z0-9]*;
 Text: '"' ~["\r\n]+ '"';
-RANGE: '[' [0-9]+ ']';
 ASSIGN: ':=';
 LABELSEP: ':';
 Space: [ \t\n\r] -> skip;
