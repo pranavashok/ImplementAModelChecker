@@ -1,31 +1,33 @@
 grammar i7Whilelang;
 
-program: declarationList? seqProcess;
+program: declarationList? initializationList? seqProcess;
 
 declarationList: DECL declaration (',' declaration)* ';';
-
-declaration: booleanDecl | integerDecl;
+declaration: integerDecl;
 integerDecl: ID RANGE;
-booleanDecl: ID;
+
+initializationList: assignment*;
 
 seqProcess: process (';'? seqProcess)* ;
 
 process : BEGIN seqStatement END;
 
-seqStatement: labelstatement (';' labelstatement)* ;
+seqStatement: labelstatement+;
 
 labelstatement: (label LABELSEP)? statement;
 
-statement: ID ASSIGN expression                        # attrib
-         | 'skip'                                      # skip
+statement: assignment                                  # attrib
+         | 'skip' ';'                                  # skip
          | 'if' bool 'then' statement 'else' statement # if
          | 'while' bool 'do' statement                 # while
-         | 'await' bool                                # await
-         | 'assert' bool                               # assert
-         | 'print' Text                                # print
-         | 'write' expression                          # write
+         | 'await' bool ';'                            # await
+         | 'assert' bool ';'                           # assert
+         | 'print' Text ';'                            # print
+         | 'write' expression ';'                      # write
          | '{' seqStatement '}'                        # block
          ;
+
+assignment: ID ASSIGN expression ';';
 
 expression: INT                                        # int
           | ID                                         # id

@@ -1,0 +1,39 @@
+decl counter[2], flag[1];
+
+counter := 1;
+
+beginprocess
+  flag := 0;
+  while flag = 1 do
+  {
+    await flag = 0;
+  }
+  if flag = 0 then
+  {
+    counter := counter - 1;
+    flag := 1;
+  }
+  else
+  {
+    skip;
+  }
+  _end1: skip;
+endprocess
+
+beginprocess
+  flag := 1;
+  while flag = 0 do
+  {
+    await flag = 1;
+  }
+  if flag = 1 then
+  {
+    counter := counter + 1;
+    flag := 0;
+  }
+  else
+  {
+    skip;
+  }
+  _end2: skip;
+endprocess
