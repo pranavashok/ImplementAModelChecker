@@ -10,7 +10,8 @@ range: INT;
 
 initializationList: assignment*;
 
-atomicPropositions: label LABELSEP bool;
+atomicPropositions: atomicProposition+;
+atomicProposition: label LABELSEP bool ';';
 
 seqProcess: process (';'? seqProcess)* ;
 
